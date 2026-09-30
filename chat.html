@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexTalk | Room</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="chat-page">
+
+<div class="chat-app">
+
+    <!-- Sidebar -->
+
+    <aside class="chat-sidebar">
+
+        <div class="chat-brand">
+            <div class="brand-mark">N</div>
+            <div>
+                <h1>NexTalk</h1>
+                <span>Connect. Talk. Together.</span>
+            </div>
+        </div>
+
+        <div class="room-info-card">
+            <div class="room-label">CURRENT ROOM</div>
+            <h2 id="sidebarRoomName">Room</h2>
+
+            <div class="room-status">
+                <span class="status-dot"></span>
+                <span id="status">Connected</span>
+            </div>
+        </div>
+
+        <div class="user-card">
+            <div class="user-avatar" id="sidebarAvatar">G</div>
+
+            <div class="user-details">
+                <strong id="profileName">Guest</strong>
+                <span>You</span>
+            </div>
+        </div>
+
+        <div class="members-card">
+
+            <div class="section-heading">
+                <span>Members</span>
+                <span class="online">🟢 Live</span>
+            </div>
+
+            <div id="memberList" class="member-list"></div>
+
+        </div>
+
+        <div class="security-card">
+            <div class="security-icon">🔒</div>
+
+            <div>
+                <strong>Private & Secure</strong>
+                <span>End-to-end room experience</span>
+            </div>
+        </div>
+
+        <button class="leave-room-btn"
+            onclick="window.location.href='index.html'">
+            ← Leave Room
+        </button>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="chat-main">
+
+        <header class="chat-topbar">
+
+            <div>
+                <div class="topbar-label">NEX TALK ROOM</div>
+                <h2 id="chatRoomTitle">Room</h2>
+            </div>
+
+            <div class="topbar-security">
+                <span class="secure-dot"></span>
+                Secure connection
+            </div>
+
+        </header>
+
+        <div class="chat-content">
+
+            <!-- Chat -->
+
+            <section class="chat-panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Messages</h3>
+                        <p>Real-time room chat</p>
+                    </div>
+
+                    <div class="panel-icon">💬</div>
+                </div>
+
+                <div id="messages" class="messages">
+                    <div class="welcome-message">
+                        <div class="welcome-icon">✦</div>
+                        <strong>Welcome to NexTalk</strong>
+                        <span>Your conversation starts here.</span>
+                    </div>
+                </div>
+
+                <div class="message-area">
+
+                    <div class="message-input-wrap">
+
+                        <input
+                            id="messageInput"
+                            type="text"
+                            placeholder="Write a message..."
+                            autocomplete="off">
+
+                        <button
+                            id="sendBtn"
+                            class="send-message-btn">
+
+                            Send →
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Video -->
+
+            <section class="video-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Video Call</h3>
+                        <p>Live camera</p>
+                    </div>
+
+                    <div class="live-badge">
+                        <span></span>
+                        LIVE
+                    </div>
+
+                </div>
+
+                <!-- Dynamic Video Grid -->
+
+                <div
+                    class="video-grid participants-1"
+                    id="videoGrid">
+
+                    <!-- Local -->
+
+                    <div
+                        id="localVideoTile"
+                        class="video-tile local-video">
+
+                        <video
+                            id="local-player"
+                            autoplay
+                            playsinline
+                            muted></video>
+
+                        <div class="video-tile-overlay">
+
+                            <div class="video-user-info">
+                                <span class="video-user-status connected"></span>
+                                <span id="localVideoName">You</span>
+                            </div>
+
+                            <span class="video-user-label">YOU</span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Remote videos are inserted automatically -->
+
+                </div>
+
+                <div class="video-controls">
+
+                    <button id="muteBtn" class="video-control">
+                        🎙️ Mute
+                    </button>
+
+                    <button id="cameraBtn" class="video-control">
+                        📹 Camera
+                    </button>
+
+                    <button id="endCallBtn" class="video-control end-call">
+                        ☎ End
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

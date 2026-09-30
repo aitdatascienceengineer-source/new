@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NexTalk — Connect Beyond</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- =========================================
+             SIDEBAR
+        ========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-mark">
+                    <span>N</span>
+                </div>
+
+                <div class="brand-name">
+                    <span>Nex</span><strong>Talk</strong>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+
+                <div class="sidebar-label">
+                    WORKSPACE
+                </div>
+
+                <button class="nav-item active" type="button">
+                    <span class="nav-icon">⌂</span>
+                    <span>Overview</span>
+                </button>
+
+                <button class="nav-item" type="button" id="roomsNavBtn">
+                    <span class="nav-icon">◫</span>
+                    <span>Rooms</span>
+                </button>
+
+                <button class="nav-item" type="button">
+                    <span class="nav-icon">◷</span>
+                    <span>Recent</span>
+                </button>
+
+            </div>
+
+            <div class="sidebar-section">
+
+                <div class="sidebar-label">
+                    QUICK ACCESS
+                </div>
+
+                <div class="mini-room-list" id="sidebarRoomList">
+                    <div class="mini-room-empty">
+                        No active rooms
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <div class="connection-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>System online</strong>
+                        <small>All services operational</small>
+                    </div>
+                </div>
+
+                <div class="sidebar-version">
+                    NEX<span>TALK</span> / 01
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================================
+             MAIN APPLICATION
+        ========================================== -->
+
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div class="breadcrumb">
+                    <span>Workspace</span>
+                    <span class="breadcrumb-separator">/</span>
+                    <strong>Overview</strong>
+                </div>
+
+                <div class="topbar-actions">
+
+                    <div class="global-status">
+                        <span class="status-dot"></span>
+                        <span>Online</span>
+                    </div>
+
+                    <button
+                        class="icon-button"
+                        id="refreshRoomsBtn"
+                        title="Refresh rooms"
+                        type="button"
+                    >
+                        ↻
+                    </button>
+
+                    <div class="user-profile">
+
+                        <div class="profile-avatar" id="profileAvatar">
+                            N
+                        </div>
+
+                        <div class="profile-details">
+                            <strong id="profileName">Guest</strong>
+                            <span>Available</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =========================================
+                 HERO
+            ========================================== -->
+
+            <section class="hero-section">
+
+                <div class="hero-copy">
+
+                    <div class="eyebrow">
+                        <span class="eyebrow-line"></span>
+                        COMMUNICATION OS
+                    </div>
+
+                    <h1>
+                        Connect
+                        <span>without limits.</span>
+                    </h1>
+
+                    <p>
+                        One place for conversations, rooms and
+                        real-time video communication.
+                    </p>
+
+                </div>
+
+                <div class="hero-number">
+                    01
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 JOIN ROOM
+            ========================================== -->
+
+            <section class="join-panel">
+
+                <div class="join-panel-heading">
+
+                    <div class="section-index">
+                        01
+                    </div>
+
+                    <div>
+                        <h2>Enter a room</h2>
+                        <p>
+                            Join an existing NexTalk conversation.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="join-form">
+
+                    <div class="field-group">
+
+                        <label for="username">
+                            YOUR NAME
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-prefix">@</span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Enter your name"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field-group">
+
+                        <label for="room">
+                            ROOM ID
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-prefix">#</span>
+
+                            <input
+                                type="text"
+                                id="room"
+                                placeholder="Enter room ID"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        id="joinBtn"
+                        class="primary-button"
+                        type="button"
+                    >
+
+                        <span>Join room</span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="status"
+                    class="form-status"
+                ></div>
+
+            </section>
+
+
+            <!-- =========================================
+                 ACTIVE ROOMS
+            ========================================== -->
+
+            <section class="rooms-section" id="roomsSection">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div class="section-index">
+                            02
+                        </div>
+
+                        <div class="section-title-row">
+                            <h2>Active rooms</h2>
+
+                            <span
+                                class="room-count"
+                                id="roomCount"
+                            >
+                                0
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="text-button"
+                        id="refreshRoomsTextBtn"
+                        type="button"
+                    >
+                        Refresh
+                        <span>↻</span>
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="room-grid"
+                    id="roomList"
+                >
+
+                    <div class="empty-rooms">
+
+                        <div class="empty-icon">
+                            ◫
+                        </div>
+
+                        <h3>No active rooms</h3>
+
+                        <p>
+                            Available conversations will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 FEATURES
+            ========================================== -->
+
+            <section class="features-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div class="section-index">
+                            03
+                        </div>
+
+                        <h2>Built for real-time</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            01
+                        </div>
+
+                        <div class="feature-icon">
+                            ◉
+                        </div>
+
+                        <h3>Live video</h3>
+
+                        <p>
+                            High-quality real-time video
+                            communication directly in your room.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            02
+                        </div>
+
+                        <div class="feature-icon">
+                            ◇
+                        </div>
+
+                        <h3>Instant chat</h3>
+
+                        <p>
+                            Stay connected with fast,
+                            persistent room conversations.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            03
+                        </div>
+
+                        <div class="feature-icon">
+                            ◎
+                        </div>
+
+                        <h3>Private rooms</h3>
+
+                        <p>
+                            Protected rooms designed for
+                            focused conversations and meetings.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-number">
+                            04
+                        </div>
+
+                        <div class="feature-icon">
+                            ↗
+                        </div>
+
+                        <h3>Built to scale</h3>
+
+                        <p>
+                            A communication platform designed
+                            to evolve with your community.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer class="app-footer">
+
+                <div>
+                    NEX<span>TALK</span>
+                </div>
+
+                <div>
+                    CONNECT • COMMUNICATE • COLLABORATE
+                </div>
+
+                <div>
+                    v1.0
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         JOIN ROOM MODAL
+    ========================================== -->
+
+    <div
+        class="modal-overlay"
+        id="joinModal"
+    >
+
+        <div class="join-modal">
+
+            <button
+                class="modal-close"
+                id="closeModalBtn"
+                type="button"
+            >
+                ×
+            </button>
+
+
+            <div class="modal-index">
+                ROOM ACCESS
+            </div>
+
+            <h2>
+                Join
+                <span id="selectedRoomName">
+                    Room
+                </span>
+            </h2>
+
+            <p class="modal-description">
+                Enter your details to access this conversation.
+            </p>
+
+
+            <div class="modal-field">
+
+                <label for="modalUsername">
+                    YOUR NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="modalUsername"
+                    placeholder="Your name"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="modal-field">
+
+                <label for="modalPassword">
+                    ROOM PASSWORD
+                </label>
+
+                <input
+                    type="password"
+                    id="modalPassword"
+                    placeholder="Enter room password"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div
+                id="modalMessage"
+                class="modal-message"
+            ></div>
+
+
+            <button
+                id="confirmJoinBtn"
+                class="primary-button modal-button"
+                type="button"
+            >
+
+                <span>Enter room</span>
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SOCKET.IO -->
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- NEX TALK -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
